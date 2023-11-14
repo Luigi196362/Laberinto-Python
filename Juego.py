@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 import os
-from Generador import GenerarEscenario 
-from Eliminar import ElimiarEscenarios
+from Funciones.Generador import GenerarEscenario 
+from Funciones.Eliminar import ElimiarEscenarios
 
 #Eliminar escenarios pasados
 ElimiarEscenarios.Eliminar()
