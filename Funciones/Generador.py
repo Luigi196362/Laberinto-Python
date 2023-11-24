@@ -35,7 +35,7 @@ class GenerarEscenario():
             i=i+1
             print ("Generando imagen "+str(i)+"...")
             img = np.zeros((600, 600, 1), np.uint8)
-            cv2.rectangle(img,pt1=(0,0),pt2=(599,599),color=(250,250,250))
+            cv2.rectangle(img,pt1=(0,0),pt2=(599,599),color=255)
             
             #Generar pasillos aleatorios
             #variables donde se guarda datos de x,y para comprobar que el conjunto no se repita 
@@ -63,12 +63,13 @@ class GenerarEscenario():
                     j+=1
                     xreg.append(x)
                     yreg.append(y)
-                    cv2.rectangle(img,pt1=(x,y),pt2=(x+60,y+60),color=(250,250,250),thickness=-1)
+                    cv2.rectangle(img,pt1=(x,y),pt2=(x+60,y+60),color=255,thickness=-1)
                                 
             #Colocar numero de escenario
-            if (img[575,580]==250):
+            
+            if (img[575,580]==255):
                 cv2.putText(img,text=str(i),org=(575,590),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=.5,color=(0,0,0))
             else:
-                cv2.putText(img,text=str(i),org=(575,580),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=.5,color=(250,250,250))
+                cv2.putText(img,text=str(i),org=(575,580),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=.5,color=(255,255,255))
             cv2.imwrite("Escenarios/Escenario "+str(i)+".jpg", img)
         print("Imagenes generadas")
