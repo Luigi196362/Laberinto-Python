@@ -5,6 +5,7 @@ from Funciones.Generador import GenerarEscenario
 from Funciones.Eliminar import ElimiarEscenarios
 import random
 
+
 #Eliminar escenarios pasados
 ElimiarEscenarios.Eliminar()
 
@@ -27,7 +28,7 @@ MapaY=2
 
 for fila in Mapa:
     print(fila)
-input()
+#input()
 
 img = cv2.imread('Escenarios/Escenario 1.jpg', cv2.IMREAD_GRAYSCALE)  # Leer la imagen
 

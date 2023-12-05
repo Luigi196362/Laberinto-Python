@@ -9,16 +9,27 @@ class GenerarEscenario():
     def CoordenadasAleatorias(img,Porcentaje,pintar):
         xreg=[]
         yreg=[]
-        j=0
+        xreg.insert(0,0)
+        yreg.insert(0,0)
+        
+        xreg.insert(0,540)
+        yreg.insert(0,0)
+        
+        xreg.insert(0,0)
+        yreg.insert(0,540)
+        
+        xreg.insert(0,540)
+        yreg.insert(0,540)
+        j=4
         #Generar numeros aleatorios
         while (j<Porcentaje):
             unico=True
             if pintar=='Camino':
-                x= random.randrange(60,481,60)
-                y= random.randrange(60,481,60)
+                #x= random.randrange(60,481,60)
+                #y= random.randrange(60,481,60)
                 #Sin marco
-                #x= random.randrange(0,541,60)
-                #y= random.randrange(0,541,60)
+                x= random.randrange(0,541,60)
+                y= random.randrange(0,541,60)
             if pintar=='Bolita':
                 x= random.randrange(20,571,60)
                 y= random.randrange(20,571,60)                
@@ -33,6 +44,7 @@ class GenerarEscenario():
                     j+=1
                     xreg.append(x)
                     yreg.append(y)
+                    #cv2.putText(img,text=str(Porcentaje-4),org=(x,y-5),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=.5,color=250)
                     cv2.rectangle(img,pt1=(x,y),pt2=(x+59,y+59),color=0,thickness=-1)
             if pintar=='Bolita':
                 if (unico==True and img[y,x] > 0 and img[y+5,x+5] > 0):
@@ -78,7 +90,8 @@ class GenerarEscenario():
         else:        
             NumEscenarios=random.randint(2,10)
             Porcentaje=random.randint(65,70)
-        
+        #print(Porcentaje)
+        #input()
         Porcentaje=100-Porcentaje
         os.system("cls")
         #Generar imagenes
@@ -91,6 +104,10 @@ class GenerarEscenario():
             Cantidad=30
             
             #Generar pasillos aleatorios
+            cv2.rectangle(img,pt1=(0,0),pt2=(59,59),color=0,thickness=-1)
+            cv2.rectangle(img,pt1=(540,0),pt2=(599,59),color=0,thickness=-1)
+            cv2.rectangle(img,pt1=(0,540),pt2=(59,599),color=0,thickness=-1)
+            cv2.rectangle(img,pt1=(540,540),pt2=(599,599),color=0,thickness=-1)
             GenerarEscenario.CoordenadasAleatorias(img,Porcentaje,pintar='Camino')
             #Generar Bolitas
             GenerarEscenario.CoordenadasAleatorias(img,Cantidad,pintar='Bolita')
