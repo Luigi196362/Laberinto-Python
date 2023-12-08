@@ -1,17 +1,17 @@
 import cv2
 import numpy as np
 import os
-from Funciones.Generador import GenerarEscenario 
-from Funciones.Eliminar import ElimiarEscenarios
+#from Funciones.Generador import GenerarEscenario 
+#from Funciones.Eliminar import ElimiarEscenarios
 import random
-from playsound import playsound
+#from playsound import playsound
 
 class Snake:
     
     def Snake():
         
         
-        ruta_audio = "Meme.mp3"
+        #ruta_audio = "Meme.mp3"
         Mapa = [[0,0,0,0,0],
                 [0,0,0,0,0],
                 [0,0,0,0,0],

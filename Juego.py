@@ -6,7 +6,7 @@ from Funciones.Eliminar import ElimiarEscenarios
 from Controles.Snake import Snake
 from Controles.Control2 import Control2
 import random
-from playsound import playsound
+#from playsound import playsound
 
 #ruta_audio = "Meme.mp3"
 while True:
