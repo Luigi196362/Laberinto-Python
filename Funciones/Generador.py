@@ -25,11 +25,11 @@ class GenerarEscenario():
         while (j<Porcentaje):
             unico=True
             if pintar=='Camino':
-                #x= random.randrange(60,481,60)
-                #y= random.randrange(60,481,60)
+                x= random.randrange(60,481,60)
+                y= random.randrange(60,481,60)
                 #Sin marco
-                x= random.randrange(0,541,60)
-                y= random.randrange(0,541,60)
+                #x= random.randrange(0,541,60)
+                #y= random.randrange(0,541,60)
             if pintar=='Bolita':
                 x= random.randrange(20,571,60)
                 y= random.randrange(20,571,60)                
@@ -48,16 +48,39 @@ class GenerarEscenario():
                     cv2.rectangle(img,pt1=(x,y),pt2=(x+59,y+59),color=0,thickness=-1)
             if pintar=='Bolita':
                 if (unico==True and img[y,x] > 0 and img[y+5,x+5] > 0):
-                    j+=1
                     xreg.append(x)
                     yreg.append(y)
                     #cv2.rectangle(img,pt1=(x,y),pt2=(x+19,y+19),color=150,thickness=-1)
-                    cv2.circle(img,center=(x+10,y+10),radius=9,color=200,thickness=-1)
-                    cv2.circle(img,center=(x+10,y+10),radius=9,color=180,thickness=0)
+                    pared=0
+                    
+                        
+                    if img[y-40,x] ==0 and y>20:
+                        pared+=1
+                        
+                    if img[y+40,x] == 0 and y<560:
+                        pared+=1
+                        
+                    if img[y,x-40] ==0 and x>20:
+                        pared+=1
+                        
+                    if x<560 and img[y,x+40] == 0:
+                        pared+=1
+                                                
+                    if pared==3:
+                        cv2.circle(img,center=(x+10,y+10),radius=9,color=150,thickness=-1)
+                        cv2.circle(img,center=(x+10,y+10),radius=9,color=90,thickness=1)    
+                    
+                    else: 
+                        if pared<4:
+                            j+=1    
+                            cv2.circle(img,center=(x+10,y+10),radius=9,color=200,thickness=-1)
+                            cv2.circle(img,center=(x+10,y+10),radius=9,color=180,thickness=0)
 
     def GenerarImagenes():
         #Elegir cantidad de escenarios o numero aleatorio de escenarios 
         e=int (input ("Eliga una opcion: \n 1.- Escenarios personalizables \n 2.- Escenarios aleatorio \n\n"))
+        #e=2
+        
         if (e==1):
             
             #Verificar escenarios >= 2 y escenarios <= 10
@@ -125,7 +148,6 @@ class GenerarEscenario():
                 cv2.putText(img,text="Porcentaje blanco: {:.0f}%".format(100-Porcentaje),org=(2,615),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=.5,color=(255,255,255))
                   
             cv2.imwrite("Escenarios/Escenario "+str(i+1)+".jpg", img)
-            
         print("Imagenes generadas")
         return NumEscenarios
 
